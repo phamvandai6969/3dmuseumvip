@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thành Tựu Văn Minh Đại Việt - Bảo Tàng 3D</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c1810;
+            --accent: #8b4513;
+            --gold: #d4af37;
+            --cream: #f5f1e8;
+            --text: #3a3a3a;
+            --border: #d4c5b0;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--cream);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255,255,255,0.03) 2px,
+                    rgba(255,255,255,0.03) 4px
+                );
+            pointer-events: none;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .authors {
+            font-size: 1.1rem;
+            font-style: italic;
+            opacity: 0.85;
+            margin-top: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .student-id {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 4rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gold);
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        /* Image Placeholder */
+        .image-placeholder {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            margin: 2rem auto;
+            background: linear-gradient(135deg, #e8dcc8 0%, #d4c5b0 100%);
+            border: 3px solid var(--border);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-placeholder:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(139, 69, 19, 0.05) 20px,
+                    rgba(139, 69, 19, 0.05) 40px
+                );
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--accent);
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .image-description {
+            font-size: 0.95rem;
+            color: var(--text);
+            opacity: 0.7;
+            margin-top: 0.5rem;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        /* List Styling */
+        ul {
+            list-style: none;
+            margin: 1.5rem 0;
+            padding-left: 0;
+        }
+
+        ul li {
+            font-size: 1.05rem;
+            padding: 0.7rem 0 0.7rem 2rem;
+            position: relative;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        ul li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+
+        /* Image Grid - 3 ảnh ngang */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .image-item {
+            text-align: center;
+        }
+
+        .image-item img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border: 3px solid var(--border);
+            border-radius: 4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-item img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .image-placeholder-small {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, #e8dcc8 0%, #d4c5b0 100%);
+            border: 3px solid var(--border);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder-small::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(139, 69, 19, 0.05) 20px,
+                    rgba(139, 69, 19, 0.05) 40px
+                );
+        }
+
+        .image-caption {
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Two Columns Layout */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .two-columns > div {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .two-columns h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        /* Link Styling */
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+            font-weight: 600;
+        }
+
+        a:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        /* Feature Box */
+        .feature-box {
+            background: white;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .feature-box h3 {
+            margin-top: 0;
+        }
+
+        /* QR Section - căn giữa, khổ ngang */
+        .qr-section {
+            margin: 3rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .qr-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .link-info {
+            text-align: left;
+        }
+
+        .link-info strong {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .link-info a {
+            font-size: 1.05rem;
+        }
+
+        .qr-code {
+            flex-shrink: 0;
+            text-align: center;
+        }
+
+        .qr-code img {
+            width: 220px;
+            height: 220px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            padding: 0.5rem;
+            background: white;
+        }
+
+        .qr-label {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text);
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+
+        /* Step Container */
+        .step {
+            background: white;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+
+        .step h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--cream);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .image-placeholder {
+                height: 300px;
+            }
+
+            .step:hover {
+                transform: none;
+            }
+
+            /* 3 ảnh ngang -> xếp dọc trên mobile */
+            .image-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            /* 2 cột -> 1 cột trên mobile */
+            .two-columns {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            /* QR section xếp dọc trên mobile */
+            .qr-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .link-info {
+                text-align: center;
+            }
+
+            .qr-code img {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Thành Tựu Văn Minh Đại Việt</h1>
+        <div class="subtitle">Bảo Tàng Ảo Trên Nền Tảng FrameVR</div>
+        <div class="authors">
+            Phạm Văn Đại • Nguyễn Ngọc Phước
+            <div class="student-id">A8K67HG</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Giới thiệu -->
+        <section id="gioi-thieu">
+            <h2>1. Giới Thiệu Về Sản Phẩm</h2>
+            <p>Sản phẩm "Bảo tàng Đại Việt" là một bảo tàng ảo (Virtual Museum) được xây dựng trên nền tảng FrameVR, cho phép người dùng tham quan không gian triển lãm văn hóa - lịch sử Việt Nam trong môi trường 3D/VR mà không cần đến trực tiếp địa điểm. Người dùng có thể di chuyển tự do, quan sát hiện vật và tương tác trong không gian ảo ngay trên trình duyệt web.</p>
+
+            <div class="qr-section">
+                <div class="qr-content">
+                    <div class="link-info">
+                        <strong>Link sản phẩm:</strong><br>
+                        <a href="https://framevr.io/baotangdaiviet" target="_blank">https://framevr.io/baotangdaiviet</a>
+                    </div>
+                    <div class="qr-code">
+                        <img src="qrbaotang.png" alt="QR Code - Bảo tàng Đại Việt">
+                        <div class="qr-label">Quét mã để truy cập</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3 Ảnh ngang -->
+        <section id="images">
+            <div class="image-grid">
+                <div class="image-item">
+                    <img src="img1.png" alt="Giao diện bảo tàng ảo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-placeholder-small" style="display:none;">
+                        <div class="image-label">IMG 1</div>
+                    </div>
+                    <p class="image-caption"></p>
+                </div>
+                <div class="image-item">
+                    <img src="img2.png" alt="Không gian triển lãm" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-placeholder-small" style="display:none;">
+                        <div class="image-label">IMG 2</div>
+                    </div>
+                    <p class="image-caption"></p>
+                </div>
+                <div class="image-item">
+                    <img src="img3.png" alt="Trải nghiệm VR" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-placeholder-small" style="display:none;">
+                        <div class="image-label">IMG 3</div>
+                    </div>
+                    <p class="image-caption"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mục tiêu và Đối tượng -->
+        <section id="muc-tieu">
+            <h2>2. Mục Tiêu Và Đối Tượng Sử Dụng</h2>
+            <div class="two-columns">
+                <div>
+                    <h3>Mục tiêu</h3>
+                    <ul>
+                        <li>Giới thiệu văn hóa và lịch sử Việt Nam một cách trực quan, sinh động</li>
+                        <li>Hỗ trợ học tập và giảng dạy lịch sử hiệu quả</li>
+                        <li>Ứng dụng công nghệ VR/3D để nâng cao trải nghiệm người dùng</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Đối tượng sử dụng</h3>
+                    <ul>
+                        <li>Học sinh, sinh viên và giáo viên</li>
+                        <li>Người yêu văn hóa Việt Nam</li>
+                        <li>Du khách trong và ngoài nước</li>
+                        <li>Người quan tâm đến công nghệ VR</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Công nghệ -->
+        <section id="cong-nghe">
+            <h2>3. Nền Tảng Và Công Nghệ</h2>
+            <p><strong>FrameVR</strong> Là nền tảng sự dụng chính để tạo website</p>
+            <ul>
+                <li><strong>Gemini</strong> Hỗ trợ đồ họa 3d</li>
+                <li><strong>Shara</strong>Hỗ trợ trong việc tạo bảo tàng</li>
+                <li><strong>Deepseek</strong> Tìm kiếm thông tin và dữ liệu</li>
+            </ul>
+            <p>Sản phẩm hỗ trợ nhiều loại tài nguyên như hình ảnh, video, audio, văn bản và mô hình 3D (GLB, GLTF).</p>
+        </section>
+
+        <!-- Quy trình xây dựng -->
+        <section id="quy-trinh">
+            <h2>4. Quy Trình Xây Dựng</h2>
+            
+            <div class="step">
+                <h3>Bước 1: Chuẩn bị nội dung</h3>
+                <p>Chuẩn bị hình ảnh, video, văn bản mô tả, và mô hình 3D  cho các hiện vật cần trưng bày.</p>
+            </div>
+
+            <div class="step">
+                <h3>Bước 2: Tạo không gian trên FrameVR</h3>
+                <p>Đăng ký tài khoản tại <a href="https://framevr.io" target="_blank">framevr.io</a>, tạo Frame mới và chọn template phù hợp (gallery, museum hall).</p>
+            </div>
+
+            <div class="step">
+                <h3>Bước 3: Thiết kế và upload nội dung</h3>
+                <p>Sắp xếp bố cục không gian, upload hình ảnh/video, thêm mô tả cho từng hiện vật, và điều chỉnh ánh sáng, vị trí các vật thể.</p>
+            </div>
+
+            <div class="step">
+                <h3>Bước 4: Kiểm thử và xuất bản</h3>
+                <p>Kiểm tra trên nhiều thiết bị máy tính, điện thoại, sau đó xuất bản và chia sẻ link.</p>
+            </div>
+        </section>
+
+        <!-- Ưu điểm và Hạn chế -->
+        <section id="danh-gia">
+            <h2>5. Ưu Điểm Và Hạn Chế</h2>
+            <div class="two-columns">
+                <div>
+                    <h3>Ưu điểm</h3>
+                    <ul>
+                        <li>Trực quan và sinh động, tạo trải nghiệm "tham quan thật"</li>
+                        <li>Không cần cài phần mềm, dễ chia sẻ qua link</li>
+                        <li>Phù hợp cho giáo dục và quảng bá văn hóa</li>
+                        <li>Hỗ trợ nhiều nền tảng và thiết bị VR</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Hạn chế</h3>
+                    <ul>
+                        <li>Cần kết nối mạng ổn định</li>
+                        <li>Nội dung nặng có thể gây lag với thiết bị yếu</li>
+                        <li>Người dùng mới cần làm quen với điều khiển 3d</li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ứng dụng -->
+        <section id="ung-dung">
+            <h2>6. Ứng Dụng Thực Tế</h2>
+            <ul>
+                <li><strong>Giáo dục:</strong> Bài học lịch sử trực quan, tham quan bảo tàng online</li>
+                <li><strong>Du lịch:</strong> Giới thiệu văn hóa Việt Nam cho du khách quốc tế</li>
+                <li><strong>Truyền thông:</strong> Triển lãm nghệ thuật, sự kiện metaverse, thuyết trình dự án</li>
+            </ul>
+        </section>
+
+        <!-- Kết luận -->
+        <section id="ket-luan">
+            <h2>7. Kết Luận</h2>
+            <p>Sản phẩm "Bảo tàng Đại Việt" là mô hình trưng bày lịch sử hiện đại, ứng dụng công nghệ 3D/VR để mang đến trải nghiệm mới mẻ và hấp dẫn. Sản phẩm không chỉ có giá trị công nghệ mà còn đóng góp vào việc giáo dục và quảng bá văn hóa Việt Nam trong kỷ nguyên số.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Bảo Tàng Đại Việt | Phạm Văn Đại • Nguyễn Ngọc Phước | A8K67HG</p>
+    </footer>
+</body>
+</html>
